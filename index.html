@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Calculator</title>
+    <style>
+        table{
+            border-radius: 20px;
+            border-color: transparent;
+        }
+        tbody, td, tfoot, th, thead, tr{
+            padding: 15px;
+        }
+        button{
+            border: transparent;
+            background-color: gainsboro;
+            padding: 10px;
+        }
+        b{
+            color:rgb(71, 71, 71);
+        }
+        #ans1 #show{
+            border-radius: 5px;
+            background-color: lightgray;
+        }
+        body{
+            background-color:lightblue
+        }
+        .text-center{
+            position: relative;
+            top: 50px;
+        }
+        .ins{
+            position: relative;
+            left: 20px;
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body onkeypress ="myFunction(event)">
+    <h1 class="text-center" style="color: rgb(1, 119, 119);">Simple Calculator</h1>
+    <div id="container" style="display: flex; justify-content: center; align-items: center;height: 100vh;">
+    
+    <table border="1" style="background-color:rgb(97, 190, 137);"> 
+    
+        <tr>
+            <td colspan="5"style="" ><b>Output </b><input type="text" id="ans1" disabled></td>
+        </tr>
+        
+        <tr>    
+            <td colspan="3"><b>Input </b><input type="text" id="show" disabled></td>
+            <td><button onclick="bkspc()" style="border-radius: 5px;"><b>BackSpace</b></button></td>
+            <td><button onclick="clr()"style="border-radius:5px;"><b>Clear</button></td>
+           
+        </tr>
+        <tr>
+            <td><button onclick="fun(1)" style="border-radius:5px;"><b>1</button></td>
+            <td><button onclick="fun(2)"style="border-radius:5px;" ><b>2</button></td>
+            <td><button onclick="fun(3)"style="border-radius:5px;" ><b>3</button></td>
+            <td><button onclick="fun('/')" style="border-radius:5px;"><b>/</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="fun(4)"style="border-radius:5px;" ><b>4</button></td>
+            <td><button onclick="fun(5)"style="border-radius:5px;" ><b>5</button></td>
+            <td><button onclick="fun(6)"style="border-radius:5px;" ><b>6</button></td>
+            <td><button onclick="fun('-')"style="border-radius:5px;" ><b>-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="fun(7)"style="border-radius:5px;" ><b>7</button></td>
+            <td><button onclick="fun(8)"style="border-radius:5px;" ><b>8</button></td>
+            <td><button onclick="fun(9)"style="border-radius:5px;" ><b>9</button></td>
+            <td><button onclick="fun('+')"style="border-radius:5px;" ><b>+</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="fun('.')"style="border-radius:5px;" ><b>.</button></td>
+            <td><button onclick="fun(0)"style="border-radius:5px;" ><b>0</button></td>
+            <td><button onclick="output()"style="border-radius:5px;"><b>=</button></td>
+            <td><button onclick="fun('*')"style="border-radius:5px;" ><b>*</button></td>
+        </tr>
+        
+    </table>
+    </div>
+    <div class="ins">
+    <h3>Instructions</h3>
+    <h5>1) This calculator can take inputs form keyboard ass well as given buttons</h5>
+    <h5>2) Backspace should be given only in the button i.e backspace from the keyboard is not supported</h5>
+    <h5>3) while hitting enter, take away the mouse cursor from the buttons present</h5>
+    <h5>4) Opening in desktop is will be appreciated, recomended screen magnification: 100%</h5>
+    </div>
+    <script>
+         
+
+        var arr = []
+
+        var ele = document.createElement('h1')
+
+        function myFunction(event) {
+        if(event.keyCode===43 || event.keyCode ===45 || event.keyCode=== 47 || event.keyCode ===48 || event.keyCode===49 || event.keyCode ===50 || event.keyCode===51 || event.keyCode ===52 || event.keyCode=== 53 || event.keyCode ===54 || event.keyCode===55 || event.keyCode ===56 || event.keyCode === 57 ||event.keyCode ===42|| event.keyCode ===46)
+        {
+         arr.push(event.key)
+         var x = arr.join('')
+         document.getElementById('show').value = x
+         console.log(arr)
+        }
+        else if(event.keyCode===13){
+        output();
+        console.log('opt')
+        }
+       }
+        
+       
+       
+       function fun(num){
+       arr.push(num)
+       var x = arr.join('')
+       document.getElementById('show').value = x
+       }
+
+       function output(){
+           var ans = eval(arr.join(''))
+           console.log(ans)
+           ans === undefined ? ans = 0 : ans = ans
+           document.getElementById('ans1').value = ans
+       }
+
+       
+       
+        function clr(){
+            document.getElementById('show').value = null;
+            arr.length = 0;
+        
+            document.getElementById('ans1').value = null
+            
+        }
+
+        function bkspc(){
+            arr.pop()
+            document.getElementById('show').value = arr.join('')
+            document.getElementById('ans1').value = null;
+            console.log('ok')
+        }
+
+   </script>
+    
+    
+</body>
+</html>
